@@ -1,0 +1,30 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(10, 10, 20, 0.95);
+  border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  box-shadow: 0 2px 20px rgba(138, 43, 226, 0.2);
+}
+
+.app-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #e0e0ff;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+  margin: 0;
+  letter-spacing: 2px;
+}
