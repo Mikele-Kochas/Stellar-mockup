@@ -126,3 +126,4 @@ ${customPrompt ? `\n## Dodatkowe uwagi\n${customPrompt}` : ''}
 
 export default SynthesisScreen
 
+

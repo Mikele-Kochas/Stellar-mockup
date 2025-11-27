@@ -33,6 +33,30 @@ function Editor({ note, onClose }: EditorProps) {
     }
   }, [note])
 
+  const handleAICorrection = (correctedText: string) => {
+    // Konwersja markdown na HTML dla ReactQuill
+    const htmlContent = correctedText
+      .split('\n\n')
+      .map(para => {
+        if (para.startsWith('#')) {
+          const text = para.replace(/^#+\s*/, '')
+          return `<h1>${text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</h1>`
+        }
+        if (para.startsWith('##')) {
+          const text = para.replace(/^##+\s*/, '')
+          return `<h2>${text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</h2>`
+        }
+        if (para.startsWith('###')) {
+          const text = para.replace(/^###+\s*/, '')
+          return `<h3>${text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</h3>`
+        }
+        return `<p>${para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`
+      })
+      .join('')
+    
+    setContent(htmlContent)
+  }
+
   const modules = {
     toolbar: [
       [{ 'header': [1, 2, 3, false] }],
@@ -72,7 +96,7 @@ function Editor({ note, onClose }: EditorProps) {
           className="editor"
         />
       </div>
-      <AIButton />
+      <AIButton onApplyCorrection={handleAICorrection} />
     </div>
   )
 }
